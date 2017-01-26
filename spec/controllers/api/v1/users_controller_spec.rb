@@ -1,16 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::UsersController, type: :controller do
-  before(:each) { request.headers["Accept"] = "application/vnd.daetsiinf_printing.v1" }
-
   describe "GET #show" do
     before(:each) do
       @user = FactoryGirl.create :user
-      get :show, params: { id: @user.id }, format: :json
+      get :show, params: { id: @user.id }
     end
 
     it "return the information about a reporter on a hash" do
-      user_response = JSON.parse(response.body, symbolize_names: true)
+      user_response = json_response
       expect(user_response[:email]).to eql @user.email
     end
 
@@ -22,11 +20,11 @@ RSpec.describe Api::V1::UsersController, type: :controller do
     context "when is succesfully created" do
       before(:each) do
         @user_attributes = FactoryGirl.attributes_for :user
-        post :create, params: { user: @user_attributes }, format: :json
+        post :create, params: { user: @user_attributes }
       end
 
       it "renders the json representation for the user record just created" do
-        user_response = JSON.parse(response.body, symbolize_names: true)
+        user_response = json_response
         expect(user_response[:email]).to eql @user_attributes[:email]
       end
 
@@ -37,16 +35,16 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       before(:each) do
         @invalid_user_attributes = { password: "12345678",
           password_confirmation: "12345678" }
-        post :create, params: { user: @invalid_user_attributes }, format: :json
+        post :create, params: { user: @invalid_user_attributes }
       end
 
       it "renders an errors json" do
-        user_response = JSON.parse(response.body, symbolize_names: true)
+        user_response = json_response
         expect(user_response).to have_key(:errors)
       end
 
       it "renders the json errors on why the user could not be created" do
-        user_response = JSON.parse(response.body, symbolize_names: true)
+        user_response = json_response
         expect(user_response[:errors][:email]).to include "can't be blank"
       end
 
@@ -60,11 +58,11 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       before(:each) do
         @user = FactoryGirl.create :user
         patch :update, params: { id: @user.id,
-          user: { email: "newmail@example.com" } }, format: :json
+          user: { email: "newmail@example.com" } }
       end
 
       it "renders the json representation for the updated user" do
-        user_response = JSON.parse(response.body, symbolize_names: true)
+        user_response = json_response
         expect(user_response[:email]).to eql "newmail@example.com"
       end
 
@@ -75,16 +73,16 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       before(:each) do
         @user = FactoryGirl.create :user
         patch :update, params: {id: @user.id,
-          user: { email: "badmail.com" } }, format: :json
+          user: { email: "badmail.com" } }
       end
 
       it "renders and errors json" do
-        user_response = JSON.parse(response.body, symbolize_names: true)
+        user_response = json_response
         expect(user_response).to have_key(:errors)
       end
 
       it "renders the json errors on why the user could not be created" do
-        user_response = JSON.parse(response.body, symbolize_names: true)
+        user_response = json_response
         expect(user_response[:errors][:email]).to include "is invalid"
       end
 
@@ -95,9 +93,9 @@ RSpec.describe Api::V1::UsersController, type: :controller do
   describe "DELETE #destroy" do
     before(:each) do
       @user = FactoryGirl.create :user
-      delete :destroy, params: { id: @user.id }, format: :json
+      delete :destroy, params: { id: @user.id }
     end
 
-    it { should respond_with 204 } 
+    it { should respond_with 204 }
   end
 end
