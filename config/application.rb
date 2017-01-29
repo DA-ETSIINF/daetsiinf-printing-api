@@ -1,6 +1,7 @@
 require_relative 'boot'
 
 require "rails"
+require "action_cable/engine"
 require "active_model/railtie"
 require "active_record/railtie"
 require "action_controller/railtie"
