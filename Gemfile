@@ -7,6 +7,7 @@ gem 'jquery-rails'
 gem 'coffee-rails'
 gem 'sass-rails'
 gem 'uglifier'
+gem 'rack-cors', :require => "rack/cors"
 
 group :doc do
   gem 'sdoc', require: false
