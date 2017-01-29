@@ -54,16 +54,21 @@ RSpec.describe Api::V1::UsersController, type: :controller do
 
   describe "PUT/PATCH #update" do
 
+    before(:each) do
+      @user = FactoryGirl.create :user
+      api_authorization_header @user.auth_token
+    end
+
     context "when is succesfully updated" do
       before(:each) do
-        @user = FactoryGirl.create :user
+
         patch :update, params: { id: @user.id,
-          user: { email: "newmail@example.com" } }
+          user: { email: "newmail@alumnos.upm.es" } }
       end
 
       it "renders the json representation for the updated user" do
         user_response = json_response
-        expect(user_response[:email]).to eql "newmail@example.com"
+        expect(user_response[:email]).to eql "newmail@alumnos.upm.es"
       end
 
       it { should respond_with 200 }
@@ -71,9 +76,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
 
     context "when is not created" do
       before(:each) do
-        @user = FactoryGirl.create :user
-        patch :update, params: {id: @user.id,
-          user: { email: "badmail.com" } }
+        patch :update, params: {id: @user.id, user: { email: "badmail.com" } }
       end
 
       it "renders and errors json" do
@@ -93,6 +96,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
   describe "DELETE #destroy" do
     before(:each) do
       @user = FactoryGirl.create :user
+      api_authorization_header @user.auth_token
       delete :destroy, params: { id: @user.id }
     end
 

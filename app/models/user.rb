@@ -1,8 +1,7 @@
 class User < ApplicationRecord
-  validates :email, uniqueness: true
   validates :auth_token, uniqueness: true
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
+  before_validation :generate_authentication_token!
 
   def generate_authentication_token!
     begin

@@ -20,6 +20,7 @@ module DaetsiinfPrinting
       g.javascript = false
       g.helper = false
     end
-    config.autoload_paths += %W(\#{config.root}/lib)
+    config.autoload_paths += %W(#{config.root}/lib)
+    config.autoload_paths += %W(#{config.root}/app/channels)
   end
 end

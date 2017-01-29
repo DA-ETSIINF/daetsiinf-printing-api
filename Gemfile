@@ -12,15 +12,17 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+group :development, :test do
+    gem 'sqlite3'
+end
+
 group :development do
   gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0', require: false
-  gem 'sqlite3'
 end
 
 group :test do
-  gem 'sqlite3'
   gem 'rspec-rails', '~> 3.5'
   gem 'shoulda-matchers', '~> 3.1'
   gem 'factory_girl_rails'
