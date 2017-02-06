@@ -4,6 +4,7 @@ RSpec.describe Api::V1::FoldersController, type: :controller do
 
   describe "GET #show" do
     before(:each) do
+      user = FactoryGirl.create :user
       @folder = FactoryGirl.create :folder
       get :show, params: { id: @folder.id }
     end
@@ -18,6 +19,7 @@ RSpec.describe Api::V1::FoldersController, type: :controller do
 
   describe "GET #index" do
     before(:each) do
+      user = FactoryGirl.create :user
       4.times { FactoryGirl.create :folder }
       get :index
     end
@@ -41,7 +43,7 @@ RSpec.describe Api::V1::FoldersController, type: :controller do
 
       it "renders the json representation for the folder record just created" do
         folder_response = json_response
-        expect(folder_response[:title]).to eql @folder_attributes[:title]
+        expect(folder_response[:name]).to eql @folder_attributes[:name]
       end
 
       it { should respond_with 201 }

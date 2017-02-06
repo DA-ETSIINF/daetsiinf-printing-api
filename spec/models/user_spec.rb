@@ -34,14 +34,14 @@ describe User do
     end
   end
 
-  describe "#products association" do
+  describe "#folders association" do
 
     before do
       @user.save
       3.times { FactoryGirl.create :folder, user: @user }
     end
 
-    it "destroys the associated products on self destruct" do
+    it "destroys the associated folders on self destruct" do
       folders = @user.folders
       @user.destroy
       folders.each do |f|

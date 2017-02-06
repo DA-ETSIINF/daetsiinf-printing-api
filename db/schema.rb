@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170129210327) do
+ActiveRecord::Schema.define(version: 20170206112754) do
+
+  create_table "documents", force: :cascade do |t|
+    t.string   "name",       default: ""
+    t.string   "url",        default: ""
+    t.integer  "pages",      default: 0
+    t.integer  "folder_id"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "user_id"
+    t.index ["folder_id"], name: "index_documents_on_folder_id"
+    t.index ["user_id"], name: "index_documents_on_user_id"
+  end
 
   create_table "folders", force: :cascade do |t|
     t.string   "name",       default: ""
