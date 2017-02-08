@@ -1,5 +1,7 @@
 class Document < ApplicationRecord
-  validates :name, :folder_id, :url, presence: true
-  validates :pages, numericality: { greater_than: 0 }, presence: true
+  has_attached_file :file
+  validates_attachment :file, presence: true, content_type: { content_type: "application/pdf" }
+  validates :name, :folder_id, presence: true
   belongs_to :folder
+  before_save
 end

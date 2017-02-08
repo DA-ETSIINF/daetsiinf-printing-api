@@ -8,30 +8,22 @@ gem 'coffee-rails'
 gem 'sass-rails'
 gem 'uglifier'
 gem 'rack-cors', :require => "rack/cors"
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'devise'
+gem 'aws-sdk', '~> 2'
+gem 'paperclip', '~> 5.0.0'
+gem 'pdf-reader'
 
 group :doc do
   gem 'sdoc', require: false
-end
-
-group :development, :test do
-    gem 'sqlite3'
 end
 
 group :development do
   gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0', require: false
+  gem 'sqlite3'
 end
-
-group :test do
-  gem 'rspec-rails'
-  gem 'shoulda-matchers', '~> 3.1'
-  gem 'factory_girl_rails'
-  gem 'ffaker'
-end
-
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'devise'
 
 group :production do
   gem 'pg', '0.18.4'

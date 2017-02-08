@@ -30,5 +30,24 @@ module DaetsiinfPrinting
         resource '*', :headers => :any, :methods => [:get, :post, :options]
       end
     end
+    # minio config
+    config.paperclip_defaults = {
+      storage: :s3,
+      s3_protocol: ':http',
+      s3_permissions: 'private',
+      s3_region: 'us-east-1',
+      s3_credentials: {
+        bucket: 'bucket',
+        access_key_id: 'XZNK59RA5Z0ZQ02B4WKD',
+        secret_access_key: 'bPU2wAx8VyH8RznhEw3i2RTyBlDidFBfCk/OFs7U',
+      },
+      s3_host_name: 'localhost:9000',
+      s3_options: {
+        endpoint: "http://localhost:9000", # for aws-sdk
+        force_path_style: true # for aws-sdk (required for minio)
+      },
+      url: ':s3_path_url',
+      path: "/:class/:id.:style.:extension"
+    }
   end
 end

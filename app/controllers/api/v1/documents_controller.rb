@@ -23,9 +23,6 @@ class Api::V1::DocumentsController < ApplicationController
   private
 
     def document_params
-      params.require(:document).permit(:name, :pages, :url)
-    end
-
-    def upload
+      params.require(:document).permit(:name, :file)
     end
 end
