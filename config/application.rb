@@ -23,6 +23,7 @@ module DaetsiinfPrinting
     end
     config.autoload_paths += %W(#{config.root}/lib)
     config.autoload_paths += %W(#{config.root}/app/channels)
+    config.filter_parameters += [:file]
     # Cors middleware for angular
     config.middleware.insert_before 0, Rack::Cors do
       allow do
@@ -47,7 +48,7 @@ module DaetsiinfPrinting
         force_path_style: true # for aws-sdk (required for minio)
       },
       url: ':s3_path_url',
-      path: "/:class/:id.:style.:extension"
+      path: "/:class/:id.:extension"
     }
   end
 end
