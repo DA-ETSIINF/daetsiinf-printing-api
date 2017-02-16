@@ -1,13 +1,9 @@
 class Api::V1::FoldersController < ApplicationController
-  before_action :authenticate_with_token!, only: [:create, :update]
+  before_action :authenticate_with_token!, only: [:create, :update, :show, :destroy]
   respond_to :json
 
   def show
     respond_with Folder.find(params[:id])
-  end
-
-  def index
-    respond_with Folder.all
   end
 
   def create

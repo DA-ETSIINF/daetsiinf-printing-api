@@ -13,6 +13,7 @@ gem 'devise'
 gem 'aws-sdk', '~> 2'
 gem 'paperclip', '~> 5.0.0'
 gem 'pdf-reader'
+gem 'foreigner'
 
 group :doc do
   gem 'sdoc', require: false

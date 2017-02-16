@@ -2,8 +2,10 @@ class Document < ApplicationRecord
   has_attached_file :file
   before_validation :count_pages
   validates_attachment :file, presence: true, content_type: { content_type: "application/pdf" }
-  validates :name, :pages, :folder_id, presence: true
+  validates :name, :folder_id, :user_id, presence: true
+  validates :pages, numericality: { greater_than: 0 }, presence: true
   before_save :add_extension_change_name
+  belongs_to :user
   belongs_to :folder
 
   private

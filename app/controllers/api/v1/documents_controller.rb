@@ -1,18 +1,13 @@
 class Api::V1::DocumentsController < ApplicationController
-  before_action :authenticate_with_token!, only: [:create]
+  before_action :authenticate_with_token!, only: [:create, :show, :destroy]
   respond_to :json
 
   def show
     respond_with Document.find(params[:id])
   end
 
-  def index
-    respond_with Document.all
-  end
-
   def create
-    folder = current_user.folders.find(params[:folder_id])
-    document = folder.documents.build(document_params)
+    document = current_user.documents.build(document_params)
     if document.save
       render json: document, status: 201, location: [:api, document]
     else
@@ -20,9 +15,16 @@ class Api::V1::DocumentsController < ApplicationController
     end
   end
 
+  def destroy
+    document = current_user.documents.find(params[:id])
+    document.destroy
+    head 204
+  end
+
   private
 
     def document_params
-      params.require(:document).permit(:name, :file)
+      folder_id = current_user.folders[0].id
+      params.require(:document).permit(:name, :file).merge(folder_id: folder_id)
     end
 end

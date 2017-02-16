@@ -3,6 +3,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
   before_validation :generate_authentication_token!
   has_many :folders, dependent: :destroy
+  has_many :documents, dependent: :destroy
 
   def generate_authentication_token!
     begin

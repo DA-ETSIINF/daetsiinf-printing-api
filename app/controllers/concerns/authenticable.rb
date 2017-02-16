@@ -13,4 +13,9 @@ module Authenticable
   def user_signed_in?
     current_user.present?
   end
+
+  def admin_user
+    render json: { errors: "Unathorized" },
+      status: :unauthorized unless current_user.admin?
+  end
 end

@@ -1,3 +1,4 @@
 class DocumentSerializer < ActiveModel::Serializer
-  attributes :id, :name
+  attributes :id, :folder_id, :name
+  belongs_to :user
 end

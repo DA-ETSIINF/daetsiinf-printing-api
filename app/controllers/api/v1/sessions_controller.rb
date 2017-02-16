@@ -1,5 +1,6 @@
 class Api::V1::SessionsController < ApplicationController
-
+  before_action :authenticate_with_token!, only: :destroy
+  
   def create
     user_password = params[:session][:password]
     user_email = params[:session][:email]

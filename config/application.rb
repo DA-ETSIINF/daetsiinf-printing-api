@@ -38,17 +38,17 @@ module DaetsiinfPrinting
       s3_permissions: 'private',
       s3_region: 'us-east-1',
       s3_credentials: {
-        bucket: 'bucket',
-        access_key_id: 'XZNK59RA5Z0ZQ02B4WKD',
-        secret_access_key: 'bPU2wAx8VyH8RznhEw3i2RTyBlDidFBfCk/OFs7U',
+        bucket: 'documents',
+        access_key_id: 'daetsiinf',
+        secret_access_key: 'sandsand',
       },
-      s3_host_name: 'localhost:9000',
+      s3_host_name: 'da.etsiinf.upm.es:9000',
       s3_options: {
-        endpoint: "http://localhost:9000", # for aws-sdk
+        endpoint: "http://da.etsiinf.upm.es:9000", # for aws-sdk
         force_path_style: true # for aws-sdk (required for minio)
       },
       url: ':s3_path_url',
-      path: "/:class/:id.:extension"
+      path: "/:id.:extension"
     }
   end
 end
