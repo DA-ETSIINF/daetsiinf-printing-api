@@ -9,7 +9,7 @@ class Api::V1::DocumentsController < ApplicationController
   def create
     document = current_user.documents.build(document_params)
     if document.save
-      render json: document, status: 201, location: [:api, document]
+      render json: document, status: 201
     else
       render json: { errors: document.errors }, status: 422
     end
@@ -24,7 +24,7 @@ class Api::V1::DocumentsController < ApplicationController
   private
 
     def document_params
-      folder_id = current_user.folders[0].id
+      folder_id = params[:document][:folder_id] || current_user.folders[0].id
       params.require(:document).permit(:name, :file).merge(folder_id: folder_id)
     end
 end

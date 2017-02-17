@@ -39,8 +39,8 @@ module DaetsiinfPrinting
       s3_region: 'us-east-1',
       s3_credentials: {
         bucket: 'documents',
-        access_key_id: 'daetsiinf',
-        secret_access_key: 'sandsand',
+        access_key_id: 'ENV['ACCESS_KEY']',
+        secret_access_key: 'ENV['SECRET_KEY']',
       },
       s3_host_name: 'da.etsiinf.upm.es:9000',
       s3_options: {

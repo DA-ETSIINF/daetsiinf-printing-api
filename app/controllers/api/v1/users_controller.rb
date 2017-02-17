@@ -9,9 +9,11 @@ class Api::V1::UsersController < ApplicationController
 
   def create
     user = User.new(user_params)
+    root = User.find_by(id: 1)
     if user.save
       user.folders.create(name: "Carpeta de #{params[:user][:name]}")
-      render json: user, status: 201, location: [:api, user]
+      # Send confirmation email
+      render json: { message: "User created, awaiting for email confirmation" }, status: 201
     else
       render json: { errors: user.errors }, status: 422
     end
@@ -20,7 +22,7 @@ class Api::V1::UsersController < ApplicationController
   def update
     user = current_user
     if user.update(user_params)
-      render json: user, status: 200, location: [:api, user]
+      render json: user, status: 200
     else
       render json: { errors: user.errors }, status: 422
     end
@@ -36,5 +38,9 @@ class Api::V1::UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    end
+
+    def send_confirmation_email
+      
     end
 end
