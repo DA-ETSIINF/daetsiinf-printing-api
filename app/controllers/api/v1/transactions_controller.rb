@@ -9,6 +9,7 @@ class Api::V1::TransactionsController < ApplicationController
     user_id = user.id
     transaction = Transaction.new(admin_id: admin_id, user_id: user_id,
       amount: params[:transaction][:amount])
+      
       if params[:transaction][:amount].to_f <= 0
         render json: { errors: "Error saving transaction" }, status: 422
       elsif transaction.save

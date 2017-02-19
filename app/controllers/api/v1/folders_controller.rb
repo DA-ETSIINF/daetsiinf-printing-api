@@ -8,6 +8,7 @@ class Api::V1::FoldersController < ApplicationController
 
   def create
     folder = current_user.folders.build(folder_params)
+
     if folder.save
       render json: folder, status: 201
     else
@@ -17,6 +18,7 @@ class Api::V1::FoldersController < ApplicationController
 
   def update
     folder = current_user.folders.find(params[:id])
+    
     if folder.update(folder_params)
       render json: folder, status: 200
     else

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       resources :sessions, only: [:create, :destroy]
       resources :transactions, only: [:create]
       resources :jobs, only: [:create]
-      resources :confirmations, only: [:create]
+      get '/confirmations/:confirmation_token', to: 'confirmations#confirm'
     end
   end
 end

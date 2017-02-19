@@ -8,6 +8,7 @@ before_action :authenticate_with_token!, only: :create
     document = Document.find_by(id: params[:job][:document_id])
     validate_document_id(document)
     balance = current_user.balance - calculate_price(document.pages)
+    
     if balance > 0
       if current_user.update(balance: balance)
         url = document.file.expiring_url(86400)
