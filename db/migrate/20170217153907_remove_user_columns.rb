@@ -7,6 +7,5 @@ class RemoveUserColumns < ActiveRecord::Migration[5.0]
     remove_column :users, :last_sign_in_at
     remove_column :users, :current_sign_in_ip
     remove_column :users, :last_sign_in_ip
-    remove_column :users, :confirmed_at
   end
 end
