@@ -1,11 +1,11 @@
 class User < ApplicationRecord
   before_validation :generate_authentication_token!
+  before_validation :generate_confirmation_token!
 
   validates :name, :email, :auth_token, :confirmation_token, :balance, presence: true
   validates :auth_token, :email, uniqueness: true
   devise :database_authenticatable
 
-  before_create :generate_confirmation_token!
   after_create :send_confirmation_email
 
   has_many :folders, dependent: :destroy
