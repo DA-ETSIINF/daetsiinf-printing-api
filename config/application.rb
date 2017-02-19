@@ -23,7 +23,7 @@ module DaetsiinfPrinting
     end
     config.autoload_paths += %W(#{config.root}/lib)
     config.autoload_paths += %W(#{config.root}/app/channels)
-    config.filter_parameters += [:file, :password, :password_confirmation, :auth_token, :confirmation_token]
+    config.filter_parameters += [:file, :password, :password_confirmation]
     # Cors middleware for angular
     config.middleware.insert_before 0, Rack::Cors do
       allow do

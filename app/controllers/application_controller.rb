@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   skip_before_action :verify_authenticity_token, if: :json_request?
   include Authenticable
 
-  #Checks format for json
+  # Checks format for json
   protected
     def json_request?
       request.format.json?

@@ -7,7 +7,7 @@
     <h1>Bienvenido al Servicio de Reprografía de Delegación de Alumnos, <%= @user.name %></h1>
     <p>
       Te has registrado de manera satisfactoria en nuestra aplicación. Para activar tu cuenta
-      es necesario que valides tu cuenta a través del siguiente enlace: <%= link_to @url, "Link de confirmación" %>
+      es necesario que valides tu cuenta a través del siguiente enlace: <%= link_to @url, "http://#{@url}" %>
     </p>
     <p>
       Si tienes cualquier duda contacta con <%= mail_to "delegacion@da.fi.upm.es", "Delegación de Alumnos" %>.

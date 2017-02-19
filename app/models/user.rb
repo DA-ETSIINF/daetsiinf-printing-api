@@ -1,9 +1,13 @@
 class User < ApplicationRecord
-  validates :auth_token, uniqueness: true
-  devise :database_authenticatable
   before_validation :generate_authentication_token!
+
+  validates :name, :email, :auth_token, :confirmation_token, :balance, presence: true
+  validates :auth_token, :email, uniqueness: true
+  devise :database_authenticatable
+
   before_create :generate_confirmation_token!
   after_create :send_confirmation_email
+
   has_many :folders, dependent: :destroy
   has_many :documents, dependent: :destroy
 
