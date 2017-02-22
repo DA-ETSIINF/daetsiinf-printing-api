@@ -14,6 +14,7 @@
 # Ignore Byebug command history file.
 .byebug_history
 
-pscript.rb
+print_script.rb
+doc_cript.rb
 template.pdf
 increaseBalance.rb

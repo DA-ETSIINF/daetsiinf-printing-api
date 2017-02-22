@@ -14,6 +14,7 @@ gem 'aws-sdk', '~> 2'
 gem 'paperclip', '~> 5.0.0'
 gem 'pdf-reader'
 gem 'foreigner'
+gem 'wicked_pdf'
 
 group :doc do
   gem 'sdoc', require: false
@@ -24,8 +25,10 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0', require: false
   gem 'sqlite3'
+  gem 'wkhtmltopdf-binary'
 end
 
 group :production do
   gem 'pg', '0.18.4'
+  gem 'wkhtmltopdf-heroku'
 end

@@ -12,7 +12,7 @@ class Api::V1::SessionsController < ApplicationController
       user.save
       render json: user, serializer: DashboardSerializer, status: 200, location: [:api, user]
     else
-      render json: { errors: "Invalid email or password" }, status: 422
+      render json: { errors: "Invalid email or password, or not confirmed" }, status: 422
     end
   end
 
