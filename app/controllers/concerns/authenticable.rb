@@ -18,4 +18,10 @@ module Authenticable
     render json: { errors: "Unathorized" },
       status: :unauthorized unless current_user.admin?
   end
+
+  def generate_confirmation_token!
+    begin
+      self.confirmation_token = Devise.friendly_token
+    end while self.class.exists?(confirmation_token: confirmation_token)
+  end
 end

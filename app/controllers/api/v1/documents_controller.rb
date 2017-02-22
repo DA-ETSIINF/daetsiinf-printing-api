@@ -8,7 +8,7 @@ class Api::V1::DocumentsController < ApplicationController
 
   def create
     document = current_user.documents.build(document_params)
-    
+
     if document.save
       render json: document, status: 201
     else
